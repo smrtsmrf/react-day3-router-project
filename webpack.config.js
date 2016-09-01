@@ -4,7 +4,8 @@ module.exports = {
 	},
 	output: {
 		path: "./public",
-		filename: "bundle.js"
+		filename: "bundle.js",
+		publicPath: "/"
 	},
 	devtools: "sourcemap",
 	module: {
@@ -13,7 +14,23 @@ module.exports = {
 				test: /\.js$/,
 				exclude: /node_modules/,
 				loader: "babel"
-			}	
+			},
+			{ 
+				test: /\.jpg$/, 
+				loader: 'file' 
+			},	
+			{
+				test: /\.css$/,
+				exclude: /node_modules/,
+				loader: 'css'
+			}
 		]	
-	}
+	},
+	devServer: {
+          contentBase: './public'
+        , historyApiFallback: true
+        , stats: {
+            colors: true
+        }
+    }
 }
